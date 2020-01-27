@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: sagan
+  name: sagan
+data:
+  NODE_ENV: production
+  DEPLOYMENT: dev
+  ENVIRONMENT: dev
+  REGION: westus
+  FILE_READ_BLACKLIST: >-
+      [
+          "clarity_clean.bak.gz"
+      ]
+  TERRAFORM_CONFIGURATION_FILES: >-
+      [
+          "main.tf",
+          "analytics.tf"
+      ]

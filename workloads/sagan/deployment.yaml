@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: sagan
+  name: sagan
+  labels:
+    app: sagan
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: sagan
+  template:
+    metadata:
+      labels:
+        app: sagan
+    spec:
+      restartPolicy: always
+      containers:
+        - name: sagan
+          image: tfabrikamdev.azurecr.io/kensciml/sagan:latest
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 8080
+          livenessProbe:
+            httpGet:
+              path: /ping
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            successThreshold: 1
+            failureThreshold: 1
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            successThreshold: 1
+            failureThreshold: 1
+          envFrom:
+            - configMapRef:
+                name: sagan
+            - secretRef:
+                name: sagan
+                # APPINSIGHTS_INSTRUMENTATIONKEY
+                # GITHUB_PAT
