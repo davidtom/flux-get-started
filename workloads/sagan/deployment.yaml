@@ -15,7 +15,7 @@ spec:
       labels:
         app: sagan
     spec:
-      restartPolicy: always
+      restartPolicy: Always
       containers:
         - name: sagan
           image: tfabrikamdev.azurecr.io/kensciml/sagan:latest
