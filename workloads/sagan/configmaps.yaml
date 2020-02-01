@@ -8,12 +8,17 @@ data:
   DEPLOYMENT: dev
   ENVIRONMENT: dev
   REGION: westus
-  FILE_READ_BLACKLIST: >-
-      [
-          "clarity_clean.bak.gz"
-      ]
-  TERRAFORM_CONFIGURATION_FILES: >-
-      [
-          "main.tf",
-          "analytics.tf"
-      ]
+  IGNORE_FILE_NAMES: >-
+    [
+        "clarity_clean.bak.gz",
+        "azure-pipelines.yaml",
+        "backend.tf",
+        "outputs.tf",
+        "terragrunt.hcl",
+        "variables.tf",
+        "versions.tf",
+        "environment.tfvars",
+        "customer.tfvars",
+        "tenant.tfvars",
+        "common.tfvars"
+    ]
